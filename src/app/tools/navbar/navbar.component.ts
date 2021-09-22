@@ -12,9 +12,9 @@ import { Router } from '@angular/router'
 export class NavbarComponent implements OnInit {
 
   isAuth:boolean=false;
-  role:Number=0;
+  role:Number;
   private authListenerSub!: Subscription;
-  constructor(public authService: AuthService, private router: Router) { 
+  constructor(public authService: AuthService, private router: Router) {
 
     this.isAuth=this.authService.getisAuthenticated();
     this.role= Number(localStorage.getItem("role"));
@@ -22,8 +22,8 @@ export class NavbarComponent implements OnInit {
     this.authListenerSub = this.authService.getAuthStatusListener()
     .subscribe((isAuthenticated)=>{
       this.isAuth = isAuthenticated;
-    
-    }); 
+
+    });
 
   }
 
@@ -34,11 +34,11 @@ export class NavbarComponent implements OnInit {
     this.authListenerSub = this.authService.getAuthStatusListener()
     .subscribe((isAuthenticated)=>{
       this.isAuth = isAuthenticated;
-    
-    }); 
+
+    });
   }
 
-  
+
 
 
 }

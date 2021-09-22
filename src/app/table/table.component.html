@@ -16,7 +16,7 @@
         <td>{{i.price}}</td>
         <td><button type="button" class="btn btn-danger"(click)='delete(i.id)'>Eliminar</button>
           <!-- <button type="button" class="btn btn-primary" (click)='edit(i.id,i.titulo,i.description,i.URL,i.price)'>Editar</button> -->
-          <button  (click)="modal()" type="button" class="btn btn-primary">Editar</button>
+          <button  (click)="modal(i.id,i.titulo,i.description,i.URL,i.price)" type="button" class="btn btn-primary">Editar</button>
         </td>
       </tr>
     </tbody>
@@ -44,45 +44,46 @@
           ></path>
         </svg>
       </div>
-      <form  #agregarForm='ngForm'>
+      <form (submit)="newInformation(agregarForm)" #agregarForm='ngForm'>
       <div class="flex flex-col px-6 py-5 bg-gray-50">
         <p class="mb-2 font-semibold text-gray-700">Producto</p>
         <input placeholder="Titulo"
           type="text"
           name="titulo"
           class="p-2 mb-2 bg-white border border-gray-200 rounded shadow-sm h-10"
-         
+         [(ngModel)]='infoToEdit.titulo'
         >
         <p class="mb-2 font-semibold text-gray-700">Descripción</p>
         <textarea cols="30" rows="10"
         type="text"
         name="description"
         class="p-2 mb-2 bg-white border border-gray-200 rounded shadow-sm h-10"
-        
+        [(ngModel)]='infoToEdit.description'
       > </textarea>
       <p class="mb-2 font-semibold text-gray-700">URL</p>
       <input
       type="text"
       name="URL" autocomplete="off"
-      class="p-2 mb-2 bg-white border border-gray-200 rounded shadow-sm h-10" 
-  
+      class="p-2 mb-2 bg-white border border-gray-200 rounded shadow-sm h-10"
+      [(ngModel)]='infoToEdit.URL'
     >
-        
+
 
 
           <div class="w-full sm:w-1/2 mt-2 sm:mt-0">
-            <p class="mb-2 font-semibold text-gray-700">Price</p> 
+            <p class="mb-2 font-semibold text-gray-700">Price</p>
             <input
               type="text"
               name="price"
-              class="w-full p-2 bg-white border border-gray-200 rounded shadow-sm appearance-none" 
-        
+              class="w-full p-2 bg-white border border-gray-200 rounded shadow-sm appearance-none"
+
               minlength="10"
+              [(ngModel)]='infoToEdit.price'
             >
-             
+
           </div>
         </div>
-      
+
       <div
         class="flex flex-row items-center justify-between p-5 bg-white border-t border-gray-200 rounded-bl-lg rounded-br-lg"
       >
